@@ -1,3 +1,4 @@
+import makeSection from "./components/Section";
 import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
@@ -69,4 +70,8 @@ export default async function initGame() {
   // });
 
   makePlayer(k, k.vec2(k.center()), 700);
+
+  makeSection(k, k.vec2(k.center().x, k.center().y + 100), "Home", () => {
+    console.log("Home");
+  });
 }
