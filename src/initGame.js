@@ -2,6 +2,7 @@ import makeSection from "./components/Section";
 import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
+import { cameraZoomValueAtom, store } from "./store";
 
 export default async function initGame() {
   const k = makeKaplayCtx();
@@ -48,6 +49,23 @@ export default async function initGame() {
   k.loadSprite("kirby-ts", "./projects/kirby-ts.png");
   k.loadSprite("platformer-js", "./projects/platformer-js.png");
   k.loadShaderURL("tiledPattern", null, "./shaders/tiledPattern.frag");
+
+  const setInitCamZoomValue = () => {
+    if (k.width() < 1000) {
+      k.camScale(k.vec2(0.5));
+      store.set(cameraZoomValueAtom, 0.5);
+      return;
+    }
+    k.camScale(k.vec2(0.8));
+    store.set(cameraZoomValueAtom, 0.8);
+  };
+  setInitCamZoomValue();
+
+  k.onUpdate(() => {
+    const cameraZoomValue = store.get(cameraZoomValueAtom);
+    if (cameraZoomValue !== k.camScale().x) k.camScale(k.vec2(cameraZoomValue));
+  });
+
   const tiledBackground = k.add([
     k.uvquad(k.width(), k.height()),
     k.shader("tiledPattern", () => ({

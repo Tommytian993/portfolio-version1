@@ -36,3 +36,31 @@ body {
   font-family: "ibm-regular";
   src: url(/fonts/IBMPlexSans-Regular.ttf);
 }
+
+.camera-controller {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.camera-controller-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.camera-controller-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

@@ -4,6 +4,7 @@ export default function ReactUI() {
           <p>
                "Tap/Click Around to Move"
           </p>
+          <CameraController />
           {/* Bring the UI Componenets here */}
           </>
      )
