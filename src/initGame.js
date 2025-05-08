@@ -28,8 +28,8 @@ export default async function initGame() {
       "walk-right-down-idle": 28,
     },
   });
-  k.loadFont("ibm-regular", "./fonts/IBMPlexSans-Regular.ttf");
-  k.loadFont("ibm-bold", "./fonts/IBMPlexSans-Bold.ttf");
+  // k.loadFont("ibm-regular", "./fonts/IBMPlexSans-Regular.ttf");
+  // k.loadFont("ibm-bold", "./fonts/IBMPlexSans-Bold.ttf");
   k.loadSprite("github-logo", "./logos/github-logo.png");
   k.loadSprite("linkedin-logo", "./logos/linkedin-logo.png");
   k.loadSprite("youtube-logo", "./logos/youtube-logo.png");
