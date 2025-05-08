@@ -7,5 +7,7 @@ export default function makeKaplayCtx() {
     debug: true, //set it false later
     debugKey: "f1",
     canvas: document.getElementById("game"),
+    width: window.innerWidth,
+    height: window.innerHeight,
   });
 }
