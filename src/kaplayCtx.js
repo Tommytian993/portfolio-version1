@@ -2,9 +2,9 @@ import kaplay from "kaplay";
 export default function makeKaplayCtx() {
   return kaplay({
     global: false,
-    pixelDensity: 2,
+    pixelDensity: 1,
     touchToMouse: true,
-    debug: true, //set it false later
+    debug: false,
     debugKey: "f1",
     canvas: document.getElementById("game"),
     width: window.innerWidth,
