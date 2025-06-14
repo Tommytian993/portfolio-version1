@@ -1,0 +1,52 @@
+[
+  {
+    "pos": { "x": 300, "y": 250 },
+    "name": "GitHub",
+    "description": "GitHub is where I manage my source code.",
+    "link": "https://github.com/Tommytian993",
+    "logoData": { "name": "github-logo", "width": 228.6, "height": 179.5 }
+  },
+  {
+    "pos": { "x": 500, "y": 250 },
+    "name": "YouTube",
+    "description": "Haven't posted anything yet",
+    "link": "https://x.com/JerryWang993",
+    "logoData": {
+      "name": "youtube-logo",
+      "width": 160,
+      "height": 110
+    }
+  },
+  {
+    "pos": { "x": 700, "y": 250 },
+    "name": "X",
+    "description": "Here is my X/Twitter, I don't really use it much.",
+    "link": "https://x.com/JerryWang993",
+    "logoData": {
+      "name": "x-logo",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": 900, "y": 250 },
+    "name": "Zhihu",
+    "description": "Zhihu Account",
+    "link": "https://www.zhihu.com/people/gerrytianw",
+    "logoData": {
+      "name": "zhihu",
+      "width": 128,
+      "height": 128
+    }
+  },
+  {
+    "pos": { "x": 1100, "y": 250 },
+    "name": "Email",
+    "address": "wang.tianye2@northeastern.edu",
+    "logoData": {
+      "name": "email-logo",
+      "width": 128,
+      "height": 128
+    }
+  }
+]
