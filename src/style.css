@@ -38,29 +38,36 @@ body {
 }
 
 .camera-controller {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  position: fixed;
+  top: 5vh;
+  right: 5vw;
+  z-index: 1;
+  gap: 1vh;
 }
 
 .camera-controller-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
+  color: var(--color2);
+  background-color: var(--color1);
+  border: var(--color1);
+  border-style: solid;
+  border-radius: 12px;
+  font-size: 2rem;
+  width: 12vw;
+  opacity: 0.4;
 }
 
-.camera-controller-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+.camera-controller-btn:active {
+  opacity: 1;
+}
+
+.controls-message {
+  position: fixed;
+  color: var(--color1);
+  top: 3vh;
+  left: 5vw;
+  opacity: 0.4;
+  font-size: 1.2rem;
+  max-width: 40vw;
+  user-select: none;
 }

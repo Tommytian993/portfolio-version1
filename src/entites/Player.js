@@ -61,6 +61,13 @@ export default function makePlayer(k, posVec2, speed) {
     )
       return;
 
+    if (
+      store.get(isSocialModalVisibleAtom) ||
+      store.get(isEmailModalVisibleAtom) ||
+      store.get(isProjectModalVisibleAtom)
+    )
+      return;
+
     player.direction = k.vec2(0, 0);
     const worldMousePos = k.toWorld(k.mousePos());
 

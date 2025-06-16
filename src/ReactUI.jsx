@@ -1,7 +1,9 @@
+import CameraController from "./reactComponents/CameraController";
+
 export default function ReactUI() {
      return(
           <>
-          <p>
+          <p className="controls-message">
                "Tap/Click Around to Move"
           </p>
           <CameraController />

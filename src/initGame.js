@@ -54,6 +54,7 @@ export default async function initGame() {
 
   const setInitCamZoomValue = () => {
     const scale = k.width() < 1000 ? 0.5 : 0.8;
+    console.log("Initial camera scale:", scale);
     k.camScale(k.vec2(scale));
     store.set(cameraZoomValueAtom, scale);
   };
@@ -62,7 +63,19 @@ export default async function initGame() {
   // 只在窗口大小改变时更新相机缩放
   k.onResize(() => {
     const cameraZoomValue = store.get(cameraZoomValueAtom);
+    console.log("Camera zoom value on resize:", cameraZoomValue);
+    console.log("Current camera scale:", k.camScale().x);
     if (cameraZoomValue !== k.camScale().x) {
+      console.log("Updating camera scale to:", cameraZoomValue);
+      k.camScale(k.vec2(cameraZoomValue));
+    }
+  });
+
+  // 添加一个更新监听器
+  k.onUpdate(() => {
+    const cameraZoomValue = store.get(cameraZoomValueAtom);
+    if (cameraZoomValue !== k.camScale().x) {
+      console.log("Updating camera scale in onUpdate:", cameraZoomValue);
       k.camScale(k.vec2(cameraZoomValue));
     }
   });
