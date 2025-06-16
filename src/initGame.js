@@ -3,8 +3,20 @@ import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
 import { cameraZoomValueAtom, store } from "./store";
+import makeIcon from "Icon";
+import { opacityTrickleDown } from "../utils";
 
 export default async function initGame() {
+  const generalData = await (await fetch("./configs/generalData.json")).json();
+  const skillsData = await (await fetch("./configs/skillsData.json")).json();
+  const socialsData = await (await fetch("./configs/socialsData.json")).json();
+  const experiencesData = await (
+    await fetch("./configs/experiencesData.json")
+  ).json();
+  const projectsData = await (
+    await fetch("./configs/projectsData.json")
+  ).json();
+
   const k = makeKaplayCtx();
 
   // 预加载所有资源
@@ -106,4 +118,55 @@ export default async function initGame() {
   makeSection(k, k.vec2(k.center().x, k.center().y + 100), "Home", () => {
     console.log("Home");
   });
+}
+
+/**
+ * 创建技能图标组件
+ *
+ * 这个函数用于创建可交互的技能图标，具有物理效果和碰撞检测。
+ * 当玩家碰到图标时，图标会被推开，并且会继承玩家的移动方向。
+ * 图标和说明文字会随着距离逐渐显现。
+ *
+ * @param {Object} k - Kaplay 游戏引擎实例
+ * @param {Object} parent - 父级游戏对象
+ * @param {Object} posVec2 - 图标位置向量
+ * @param {Object} imageData - 图标数据对象
+ *   @param {string} imageData.name - 图标精灵名称
+ *   @param {number} imageData.width - 图标宽度
+ *   @param {number} imageData.height - 图标高度
+ * @param {string} subtitle - 图标下方的说明文字
+ *
+ * @returns {Object} 返回技能图标对象
+ */
+export function makeSkillIcon(k, parent, posVec2, imageData, subtitle) {
+  // 使用基础图标组件创建图标和说明文字
+  const [icon, subtitleText] = makeIcon(
+    k,
+    parent,
+    posVec2,
+    imageData,
+    subtitle
+  );
+
+  // 添加碰撞区域，比图标本身稍大一些
+  icon.use(
+    k.area({ shape: new k.Rect(k.vec2(0), icon.width + 50, icon.height + 65) })
+  );
+
+  // 添加物理属性，使图标可以被推动
+  icon.use(k.body({ drag: 1 }));
+
+  // 初始化移动方向
+  icon.use({ direction: k.vec2(0, 0) });
+
+  // 当与玩家碰撞时，图标会被推开
+  icon.onCollide("player", (player) => {
+    icon.applyImpulse(player.direction.scale(1000)); // 施加冲量
+    icon.direction = player.direction; // 继承玩家方向
+  });
+
+  // 应用渐入效果
+  opacityTrickleDown(parent, [subtitleText]);
+
+  return icon;
 }
