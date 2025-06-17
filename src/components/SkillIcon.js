@@ -1,4 +1,4 @@
-import makeIcon from "./icon";
+import makeIcon from "./Icon";
 import { opacityTrickleDown } from "../utils";
 
 export default function makeSkillIcon(k, parent, posVec2, imageData, subtitle) {

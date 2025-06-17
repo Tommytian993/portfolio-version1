@@ -6,7 +6,7 @@ import {
   store,
 } from "../store";
 import { opacityTrickleDown } from "../utils";
-import makeIcon from "./icon";
+import makeIcon from "./Icon";
 
 export default function makeSocialIcon(
   k,

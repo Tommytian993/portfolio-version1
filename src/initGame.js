@@ -3,7 +3,7 @@ import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
 import { cameraZoomValueAtom, store } from "./store";
-import makeIcon from "./components/icon";
+import makeIcon from "./components/Icon";
 import { opacityTrickleDown } from "./utils";
 import { makeAppear } from "./utils";
 import makeSocialIcon from "./components/SocialIcon";
