@@ -9,10 +9,10 @@
   {
     "pos": { "x": 675, "y": 250 },
     "name": "Zhihu",
-    "description": "Here is my Zhihu, I don't really use it much.",
-    "link": "https://x.com/jslegenddev",
+    "description": "Here is my Zhihu, I use it occasionally to book mark programming related posts.",
+    "link": "https://www.zhihu.com/people/gerrytianw",
     "logoData": {
-      "name": "x-logo",
+      "name": "zhihu-logo",
       "width": 128,
       "height": 128
     }
@@ -20,7 +20,7 @@
   {
     "pos": { "x": 975, "y": 250 },
     "name": "Email",
-    "address": "jslegend@protonmail.com",
+    "address": "tianyewang52@gmail.com",
     "logoData": {
       "name": "email-logo",
       "width": 128,
