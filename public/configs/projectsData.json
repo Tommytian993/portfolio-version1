@@ -20,25 +20,6 @@
   },
   {
     "pos": { "x": 0, "y": 840 },
-    "thumbnail": "kanbas-mern",
-    "data": {
-      "title": "Kanbas - A Canvas inspired Learning Management System | MERN Stack",
-      "links": [
-        {
-          "id": 0,
-          "name": "Live Demo",
-          "link": "https://kanbas-learning-platform.netlify.app/#/Kanbas/Courses/1234/Home"
-        },
-        {
-          "id": 1,
-          "name": "Source Code",
-          "link": "https://github.com/Tommytian993/coursework-cs4530"
-        }
-      ]
-    }
-  },
-  {
-    "pos": { "x": 0, "y": 1320 },
     "thumbnail": "minix-godot",
     "data": {
       "title": "MiniX - A Lightweight 4X Strategy Game Prototype | C#, Godot ",
@@ -52,6 +33,25 @@
           "id": 1,
           "name": "Source Code",
           "link": "https://github.com/Tommytian993/MiniX"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 1320 },
+    "thumbnail": "kanbas-mern",
+    "data": {
+      "title": "Kanbas - A Canvas inspired Learning Management System | MERN Stack",
+      "links": [
+        {
+          "id": 0,
+          "name": "Live Demo",
+          "link": "https://kanbas-learning-platform.netlify.app/#/Kanbas/Courses/1234/Home"
+        },
+        {
+          "id": 1,
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/coursework-cs4530"
         }
       ]
     }
