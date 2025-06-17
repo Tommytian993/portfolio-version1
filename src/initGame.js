@@ -3,8 +3,8 @@ import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
 import { cameraZoomValueAtom, store } from "./store";
-import makeIcon from "Icon";
-import { opacityTrickleDown } from "../utils";
+import makeIcon from "./components/Icon";
+import { opacityTrickleDown } from "./utils";
 
 export default async function initGame() {
   const generalData = await (await fetch("./configs/generalData.json")).json();
