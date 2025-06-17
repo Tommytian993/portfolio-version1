@@ -14,7 +14,7 @@
     "logoData": {
       "name": "csharp-logo",
       "width": 128,
-      "height": 128
+      "height": 140
     }
   },
   {
@@ -50,7 +50,7 @@
     "logoData": {
       "name": "cpp-logo",
       "width": 128,
-      "height": 128
+      "height": 140
     }
   },
   {
@@ -67,8 +67,8 @@
     "name": "Godot",
     "logoData": {
       "name": "godot-logo",
-      "width": 140,
-      "height": 110
+      "width": 128,
+      "height": 128
     }
   },
   {
