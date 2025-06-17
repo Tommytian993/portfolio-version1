@@ -29,3 +29,5 @@ Please Visit [jerrywang.netlify.app](https://jerrywang.netlify.app) for this int
 ## Credits
 
 This project is based on the tutorial on freeCodeCamp.org. Special thanks for the inspiration!
+
+Also, please check out [Kaplay](https://kaplayjs.com/) - the interesting open-source 2D game engine that this project is built with. It's free, fun, and useful for creating interactive web gameplay.
