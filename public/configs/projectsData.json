@@ -39,25 +39,6 @@
   },
   {
     "pos": { "x": 0, "y": 1320 },
-    "thumbnail": "kanbas-mern",
-    "data": {
-      "title": "Kanbas - A Canvas inspired Learning Management System | MERN Stack",
-      "links": [
-        {
-          "id": 0,
-          "name": "Live Demo",
-          "link": "https://kanbas-learning-platform.netlify.app/#/Kanbas/Courses/1234/Home"
-        },
-        {
-          "id": 1,
-          "name": "Source Code",
-          "link": "https://github.com/Tommytian993/coursework-cs4530"
-        }
-      ]
-    }
-  },
-  {
-    "pos": { "x": 0, "y": 1810 },
     "thumbnail": "agritrack-angular",
     "data": {
       "title": "AgriTrack - Internship Project | Angular 12, Typescript, Django, PostgreSQL",
@@ -71,6 +52,25 @@
           "id": 1,
           "name": "Source Code will be added soon",
           "link": "https://github.com/Tommytian993"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 1810 },
+    "thumbnail": "kanbas-mern",
+    "data": {
+      "title": "Kanbas - A Canvas inspired Learning Management System | MERN Stack",
+      "links": [
+        {
+          "id": 0,
+          "name": "Live Demo",
+          "link": "https://kanbas-learning-platform.netlify.app/#/Kanbas/Courses/1234/Home"
+        },
+        {
+          "id": 1,
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/coursework-cs4530"
         }
       ]
     }
