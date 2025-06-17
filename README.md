@@ -1,12 +1,31 @@
-# React + Vite
+# 2D Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive 2D portfolio website built with React and Kaplay game engine. Featuring my projects, programming skills and past experiences :).
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Kaplay (2D Game Engine)
+- Vite
+- Jotai (State Management)
 
-## Expanding the ESLint configuration
+## Local Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Start development server (please make sure Node.js >= 20)
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Live Demo
+
+Please Visit [jerrywang.netlify.app](https://jerrywang.netlify.app) for this interactive portfolio.
+
+## Credits
+
+This project is based on the tutorial on freeCodeCamp.org. Special thanks for the inspiration!
