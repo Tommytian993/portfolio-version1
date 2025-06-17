@@ -1,76 +1,76 @@
 [
   {
     "pos": { "x": 0, "y": 350 },
-    "thumbnail": "tower-dragon",
+    "thumbnail": "flameguard-cpp",
     "data": {
-      "title": "2D Dragon Tower Defense Game, <C++ + SDL2>",
+      "title": "Flameguard 2D Tower Defense | C++, SDL2, CMake",
       "links": [
         {
           "id": 0,
           "name": "Live Demo",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "link": "https://jslegend.itch.io/sonic-ring-run"
         },
         {
           "id": 1,
           "name": "Source Code",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "link": "https://github.com/JSLegendDev/sonic-runner"
         }
       ]
     }
   },
   {
     "pos": { "x": 0, "y": 840 },
-    "thumbnail": "merkle",
+    "thumbnail": "kanbas-mern",
     "data": {
-      "title": "Cryptocurrency Market Display WebApp, <React + Node.js + Chart.js>",
+      "title": "Kanbas - A Canvas inspired Learning Management System | MERN Stack",
       "links": [
         {
           "id": 0,
           "name": "Live Demo",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "link": "https://kanbas-learning-platform.netlify.app/#/Kanbas/Courses/1234/Home"
         },
         {
           "id": 1,
           "name": "Source Code",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "link": "https://github.com/Tommytian993/coursework-cs4530"
         }
       ]
     }
   },
   {
     "pos": { "x": 0, "y": 1320 },
-    "thumbnail": "lox",
+    "thumbnail": "minix-godot",
     "data": {
-      "title": "C based Bytecode Interpreter, <C>",
+      "title": "MiniX - A Lightweight 4X Strategy Game Prototype | C#, Godot ",
       "links": [
         {
           "id": 0,
-          "name": "Live Demo",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "name": "Live Demo in progress",
+          "link": "https://github.com/Tommytian993"
         },
         {
           "id": 1,
           "name": "Source Code",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "link": "https://github.com/Tommytian993/MiniX"
         }
       ]
     }
   },
   {
-    "pos": { "x": 0, "y": 1800 },
-    "thumbnail": "hazel",
+    "pos": { "x": 0, "y": 1810 },
+    "thumbnail": "agritrack-angular",
     "data": {
-      "title": "Lightweight Game Engine, <Java + OpenGL>",
+      "title": "AgriTrack - Internship Project | Angular 12, Typescript, Django, PostgreSQL",
       "links": [
         {
           "id": 0,
-          "name": "Live Demo",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "name": "Live Demo in development",
+          "link": "https://github.com/Tommytian993"
         },
         {
           "id": 1,
-          "name": "Source Code",
-          "link": "https://github.com/Tommytian993/tower-defence-tdgame"
+          "name": "Source Code will be added soon",
+          "link": "https://github.com/Tommytian993"
         }
       ]
     }

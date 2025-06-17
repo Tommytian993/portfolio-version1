@@ -1,81 +1,81 @@
 [
   {
     "pos": { "x": 0, "y": 0 },
-    "name": "JavaScript",
+    "name": "SDL2",
     "logoData": {
-      "name": "javascript-logo",
+      "name": "sdl2-logo",
       "width": 128,
       "height": 128
     }
   },
   {
     "pos": { "x": -200, "y": 0 },
-    "name": "TypeScript",
+    "name": "C#",
     "logoData": {
-      "name": "typescript-logo",
+      "name": "csharp-logo",
       "width": 128,
       "height": 128
     }
   },
   {
     "pos": { "x": 0, "y": -200 },
-    "name": "React",
+    "name": "Java",
     "logoData": {
-      "name": "react-logo",
+      "name": "java-logo",
       "width": 148,
       "height": 128
     }
   },
   {
     "pos": { "x": 0, "y": 200 },
-    "name": "Next.js",
+    "name": "MySQL",
     "logoData": {
-      "name": "nextjs-logo",
+      "name": "mysql-logo",
       "width": 128,
       "height": 128
     }
   },
   {
     "pos": { "x": -200, "y": 200 },
-    "name": "PostgreSQL",
+    "name": "MongoDB",
     "logoData": {
-      "name": "postgres-logo",
+      "name": "mongodb-logo",
       "width": 128,
       "height": 128
     }
   },
   {
     "pos": { "x": -200, "y": -200 },
-    "name": "HTML",
+    "name": "C++",
     "logoData": {
-      "name": "html-logo",
+      "name": "cpp-logo",
       "width": 128,
       "height": 128
     }
   },
   {
     "pos": { "x": -400, "y": -200 },
-    "name": "CSS",
+    "name": "Python",
     "logoData": {
-      "name": "css-logo",
+      "name": "python2-logo",
       "width": 128,
       "height": 128
     }
   },
   {
     "pos": { "x": -400, "y": 0 },
-    "name": "Tailwind",
+    "name": "Godot",
     "logoData": {
-      "name": "tailwind-logo",
+      "name": "godot-logo",
       "width": 140,
       "height": 110
     }
   },
   {
     "pos": { "x": -400, "y": 200 },
-    "name": "Python",
+    "name": "React",
     "logoData": {
-      "name": "python-logo",
+      "name": "react-logo",
       "width": 128,
       "height": 128
     }
