@@ -3,8 +3,13 @@ import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
 import { cameraZoomValueAtom, store } from "./store";
-import makeIcon from "./components/Icon";
+import makeIcon from "./components/icon";
 import { opacityTrickleDown } from "./utils";
+import { makeAppear } from "./utils";
+import makeSocialIcon from "./components/SocialIcon";
+import makeEmailIcon from "./components/EmailIcon";
+import makeWorkExperienceCard from "./components/WorkExperience";
+import makeProjectCard from "./components/ProjectCard";
 
 export default async function initGame() {
   const generalData = await (await fetch("./configs/generalData.json")).json();
@@ -43,29 +48,29 @@ export default async function initGame() {
         "walk-right-down-idle": 28,
       },
     }),
+    k.loadFont("ibm-regular", "./fonts/IBMPlexSans-Regular.ttf"),
+    k.loadFont("ibm-bold", "./fonts/IBMPlexSans-Bold.ttf"),
     k.loadSprite("github-logo", "./logos/github-logo.png"),
-    k.loadSprite("linkedin-logo", "./logos/linkedin-logo.png"),
-    k.loadSprite("youtube-logo", "./logos/youtube-logo.png"),
-    k.loadSprite("x-logo", "./logos/x-logo.png"),
-    k.loadSprite("substack-logo", "./logos/substack-logo.png"),
-    k.loadSprite("javascript-logo", "./logos/js-logo.png"),
-    k.loadSprite("typescript-logo", "./logos/ts-logo.png"),
+    k.loadSprite("zhihu-logo", "./logos/zhihu-logo.png"),
+    k.loadSprite("sdl2-logo", "./logos/sdl2-logo.png"),
+    k.loadSprite("csharp-logo", "./logos/csharp-logo.png"),
+    k.loadSprite("java-logo", "./logos/java-logo.png"),
+    k.loadSprite("mysql-logo", "./logos/mysql-logo.png"),
+    k.loadSprite("mongodb-logo", "./logos/mongodb-logo.png"),
+    k.loadSprite("cpp-logo", "./logos/cpp-logo.png"),
     k.loadSprite("react-logo", "./logos/react-logo.png"),
-    k.loadSprite("nextjs-logo", "./logos/nextjs-logo.png"),
-    k.loadSprite("postgres-logo", "./logos/postgres-logo.png"),
-    k.loadSprite("html-logo", "./logos/html-logo.png"),
-    k.loadSprite("css-logo", "./logos/css-logo.png"),
-    k.loadSprite("tailwind-logo", "./logos/tailwind-logo.png"),
-    k.loadSprite("python-logo", "./logos/python-logo.png"),
+    k.loadSprite("godot-logo", "./logos/godot-logo.png"),
+    k.loadSprite("python2-logo", "./logos/python2-logo.png"),
     k.loadSprite("email-logo", "./logos/email-logo.png"),
-    k.loadSprite("sonic-js", "./projects/sonic-js.png"),
-    k.loadSprite("kirby-ts", "./projects/kirby-ts.png"),
-    k.loadSprite("platformer-js", "./projects/platformer-js.png"),
+    k.loadSprite("flameguard-cpp", "./projects/flameguard-cpp.png"),
+    k.loadSprite("kanbas-mern", "./projects/kanbas-mern.png"),
+    k.loadSprite("minix-godot", "./projects/minix-godot.png"),
+    k.loadSprite("agritrack-angular", "./projects/agritrack-angular.png"),
     k.loadShaderURL("tiledPattern", null, "./shaders/tiledPattern.frag"),
   ]);
 
   const setInitCamZoomValue = () => {
-    const scale = k.width() < 1000 ? 0.5 : 0.8;
+    const scale = k.width() < 1000 ? 0.2 : 0.5;
     console.log("Initial camera scale:", scale);
     k.camScale(k.vec2(scale));
     store.set(cameraZoomValueAtom, scale);
@@ -113,11 +118,129 @@ export default async function initGame() {
     tiledBackground.uniform.u_aspect = k.width() / k.height();
   });
 
-  makePlayer(k, k.vec2(k.center()), 700);
+  //makePlayer(k, k.vec2(k.center()), 700);
+  makeSection(
+    k,
+    k.vec2(k.center().x, k.center().y - 400),
+    generalData.section1Name,
+    (parent) => {
+      const container = parent.add([k.pos(-805, -700), k.opacity(0)]);
 
-  makeSection(k, k.vec2(k.center().x, k.center().y + 100), "Home", () => {
-    console.log("Home");
-  });
+      container.add([
+        k.text(generalData.header.title, { font: "ibm-bold", size: 88 }),
+        k.color(k.Color.fromHex(PALETTE.color1)),
+        k.pos(260, 0),
+        k.opacity(0),
+      ]);
+
+      container.add([
+        k.text(generalData.header.subtitle, {
+          font: "ibm-bold",
+          size: 48,
+        }),
+        k.color(k.Color.fromHex(PALETTE.color1)),
+        k.pos(415, 100),
+        k.opacity(0),
+      ]);
+
+      const socialContainer = container.add([k.pos(130, 0), k.opacity(0)]);
+
+      for (const socialData of socialsData) {
+        if (socialData.name === "Email") {
+          makeEmailIcon(
+            k,
+            socialContainer,
+            k.vec2(socialData.pos.x, socialData.pos.y),
+            socialData.logoData,
+            socialData.name,
+            socialData.address
+          );
+          continue;
+        }
+
+        makeSocialIcon(
+          k,
+          socialContainer,
+          k.vec2(socialData.pos.x, socialData.pos.y),
+          socialData.logoData,
+          socialData.name,
+          socialData.link,
+          socialData.description
+        );
+      }
+
+      makeAppear(k, container);
+      makeAppear(k, socialContainer);
+    }
+  );
+  makeSection(
+    k,
+    k.vec2(k.center().x - 400, k.center().y),
+    generalData.section2Name,
+    (parent) => {
+      /* make the container independent of the section
+       so that the skill icons appear on top of every section's children.
+       so that when the skill icons are pushed around by the player
+       they always remain on top */
+      const container = k.add([
+        k.opacity(0),
+        k.pos(parent.pos.x - 300, parent.pos.y),
+      ]);
+
+      for (const skillData of skillsData) {
+        makeSkillIcon(
+          k,
+          container,
+          k.vec2(skillData.pos.x, skillData.pos.y),
+          skillData.logoData,
+          skillData.name
+        );
+      }
+
+      makeAppear(k, container);
+    }
+  );
+  makeSection(
+    k,
+    k.vec2(k.center().x + 400, k.center().y),
+    generalData.section3Name,
+    (parent) => {
+      const container = parent.add([k.opacity(0), k.pos(0)]);
+      for (const experienceData of experiencesData) {
+        makeWorkExperienceCard(
+          k,
+          container,
+          k.vec2(experienceData.pos.x, experienceData.pos.y),
+          experienceData.cardHeight,
+          experienceData.roleData
+        );
+      }
+
+      makeAppear(k, container);
+    }
+  );
+  makeSection(
+    k,
+    k.vec2(k.center().x, k.center().y + 400),
+    generalData.section4Name,
+    (parent) => {
+      const container = parent.add([k.opacity(0), k.pos(0, 0)]);
+
+      for (const project of projectsData) {
+        makeProjectCard(
+          k,
+          container,
+          k.vec2(project.pos.x, project.pos.y),
+          project.data,
+          project.thumbnail
+        );
+      }
+
+      makeAppear(k, container);
+    }
+  );
+
+  makePlayer(k, k.vec2(k.center()), 700);
 }
 
 /**
