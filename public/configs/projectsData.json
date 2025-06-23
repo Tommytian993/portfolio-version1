@@ -26,7 +26,7 @@
       "links": [
         {
           "id": 0,
-          "name": "Live Demo in progress",
+          "name": "Live Demo will upload once AI player funtions all finished",
           "link": "https://github.com/Tommytian993"
         },
         {
@@ -45,13 +45,13 @@
       "links": [
         {
           "id": 0,
-          "name": "Live Demo in development",
+          "name": "Live Demo",
           "link": "https://github.com/Tommytian993"
         },
         {
           "id": 1,
-          "name": "Source Code will be added soon",
-          "link": "https://github.com/Tommytian993"
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/AgriTrack-intern-project"
         }
       ]
     }
