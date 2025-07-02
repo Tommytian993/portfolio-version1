@@ -26,11 +26,6 @@
       "links": [
         {
           "id": 0,
-          "name": "Live Demo will upload once AI player funtions all finished",
-          "link": "https://github.com/Tommytian993"
-        },
-        {
-          "id": 1,
           "name": "Source Code",
           "link": "https://github.com/Tommytian993/MiniX"
         }
@@ -45,11 +40,6 @@
       "links": [
         {
           "id": 0,
-          "name": "Live Demo",
-          "link": "https://github.com/Tommytian993"
-        },
-        {
-          "id": 1,
           "name": "Source Code",
           "link": "https://github.com/Tommytian993/AgriTrack-intern-project"
         }
@@ -64,11 +54,6 @@
       "links": [
         {
           "id": 0,
-          "name": "Live Demo",
-          "link": "https://kanbas-learning-platform.netlify.app/#/Kanbas/Courses/1234/Home"
-        },
-        {
-          "id": 1,
           "name": "Source Code",
           "link": "https://github.com/Tommytian993/coursework-cs4530"
         }
