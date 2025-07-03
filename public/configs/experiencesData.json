@@ -1,7 +1,7 @@
 [
   {
-    "pos": { "x": 150, "y": -100 },
-    "cardHeight": 250,
+    "pos": { "x": 150, "y": -200 },
+    "cardHeight": 280,
     "roleData": {
       "title": "Teaching Assistant - CS3520 Programming in C++",
       "description": "- Assisted in teaching core C++ concepts, including memory management, object-oriented programming, and debugging.\n - Held weekly office hours and supported over 80 students through Piazza, email, and live sessions.",
@@ -13,8 +13,8 @@
     }
   },
   {
-    "pos": { "x": 150, "y": 180 },
-    "cardHeight": 250,
+    "pos": { "x": 150, "y": 100 },
+    "cardHeight": 280,
     "roleData": {
       "title": "Software Developer Internship",
       "description": "- Created AgriTrack, a full-stack web application that aims to help farmers track to farm operations, crop yields, harvest data and etc.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records",
@@ -26,8 +26,8 @@
     }
   },
   {
-    "pos": { "x": 150, "y": 360 },
-    "cardHeight": 250,
+    "pos": { "x": 150, "y": 400 },
+    "cardHeight": 280,
     "roleData": {
       "title": "STEM Literacy Volunteer",
       "description": "- Helped middle school students in preparation for the Boston Public Schools Science Fair.\n- Mentored students with writing technical reports and essays.\n- Supported students research in STEM areas including Environmental Science, Computer Vision and Game Design.",
