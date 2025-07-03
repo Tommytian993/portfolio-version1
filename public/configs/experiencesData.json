@@ -17,7 +17,7 @@
     "cardHeight": 280,
     "roleData": {
       "title": "Software Developer Internship",
-      "description": "- Created AgriTrack, a full-stack web application that aims to help farmers track to farm operations, crop yields, harvest data and etc.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.",
+      "description": "- Created AgriTrack, a full-stack web application that aims to help farmers track to farm operations, crop yields, harvest data and etc.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.",
       "company": {
         "name": "CoolCrops",
         "startDate": "Feb 2024",
