@@ -17,11 +17,24 @@
     "cardHeight": 250,
     "roleData": {
       "title": "Software Developer Internship",
-      "description": "- Django + PostgreSQL Database creation and data processing of in-field system operational data. \n- Python code development for dataset analysis and model prediction of in-field system operational data",
+      "description": "- Created AgriTrack, a full-stack web application that aims to help farmers track to farm operations, crop yields, harvest data and etc.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records",
       "company": {
         "name": "CoolCrops",
         "startDate": "Feb 2024",
         "endDate": "May 2024"
+      }
+    }
+  },
+  {
+    "pos": { "x": 150, "y": 360 },
+    "cardHeight": 250,
+    "roleData": {
+      "title": "STEM Literacy Volunteer",
+      "description": "- Helped middle school students in preparation for the Boston Public Schools Science Fair.\n- Mentored students with writing technical reports and essays.\n- Supported students research in STEM areas including Environmental Science, Computer Vision and Game Design.",
+      "company": {
+        "name": "826 Boston",
+        "startDate": "Jan 2024",
+        "endDate": "Apr 2024"
       }
     }
   }
