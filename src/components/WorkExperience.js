@@ -40,7 +40,12 @@ export default function makeWorkExperienceCard(
   ]);
 
   const description = card.add([
-    k.text(roleData.description, { font: "ibm-regular", size: 25, width: 750 }),
+    k.text(roleData.description, {
+      font: "ibm-regular",
+      size: 25,
+      width: 750,
+      lineSpacing: 8,
+    }),
     k.color(k.Color.fromHex(PALETTE.color1)),
     k.pos(20, 110),
     k.opacity(0),
