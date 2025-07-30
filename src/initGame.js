@@ -6,12 +6,17 @@ import { cameraZoomValueAtom, store } from "./store";
 import makeIcon from "./components/Icon";
 import { opacityTrickleDown } from "./utils";
 import { makeAppear } from "./utils";
+import { PerformanceMonitor } from "./utils";
 import makeSocialIcon from "./components/SocialIcon";
 import makeEmailIcon from "./components/EmailIcon";
 import makeWorkExperienceCard from "./components/WorkExperience";
 import makeProjectCard from "./components/ProjectCard";
 
 export default async function initGame() {
+  // 初始化性能监控
+  const performanceMonitor = new PerformanceMonitor();
+  performanceMonitor.start();
+
   const generalData = await (await fetch("./configs/generalData.json")).json();
   const skillsData = await (await fetch("./configs/skillsData.json")).json();
   const socialsData = await (await fetch("./configs/socialsData.json")).json();
@@ -23,6 +28,11 @@ export default async function initGame() {
   ).json();
 
   const k = makeKaplayCtx();
+
+  // 添加性能监控到游戏循环
+  k.onUpdate(() => {
+    performanceMonitor.update();
+  });
 
   // 预加载所有资源
   await Promise.all([
@@ -71,29 +81,26 @@ export default async function initGame() {
 
   const setInitCamZoomValue = () => {
     const scale = k.width() < 1000 ? 0.2 : 0.5;
-    console.log("Initial camera scale:", scale);
     k.camScale(k.vec2(scale));
     store.set(cameraZoomValueAtom, scale);
   };
   setInitCamZoomValue();
 
-  // 只在窗口大小改变时更新相机缩放
+  // 优化相机缩放更新逻辑
+  let lastCameraZoomValue = store.get(cameraZoomValueAtom);
   k.onResize(() => {
     const cameraZoomValue = store.get(cameraZoomValueAtom);
-    console.log("Camera zoom value on resize:", cameraZoomValue);
-    console.log("Current camera scale:", k.camScale().x);
-    if (cameraZoomValue !== k.camScale().x) {
-      console.log("Updating camera scale to:", cameraZoomValue);
+    if (cameraZoomValue !== lastCameraZoomValue) {
       k.camScale(k.vec2(cameraZoomValue));
+      lastCameraZoomValue = cameraZoomValue;
     }
   });
 
-  // 添加一个更新监听器
-  k.onUpdate(() => {
-    const cameraZoomValue = store.get(cameraZoomValueAtom);
-    if (cameraZoomValue !== k.camScale().x) {
-      console.log("Updating camera scale in onUpdate:", cameraZoomValue);
-      k.camScale(k.vec2(cameraZoomValue));
+  // 移除频繁的onUpdate检查，改为在store变化时更新
+  store.sub(cameraZoomValueAtom, (newValue) => {
+    if (newValue !== lastCameraZoomValue) {
+      k.camScale(k.vec2(newValue));
+      lastCameraZoomValue = newValue;
     }
   });
 
@@ -111,7 +118,7 @@ export default async function initGame() {
     k.fixed(),
   ]);
 
-  // 只在窗口大小改变时更新背景
+  // 优化背景更新
   k.onResize(() => {
     tiledBackground.width = k.width();
     tiledBackground.height = k.height();

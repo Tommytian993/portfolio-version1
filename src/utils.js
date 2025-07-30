@@ -50,3 +50,82 @@ export function opacityTrickleDown(parent, indirectChildren) {
     }
   });
 }
+
+/**
+ * 性能监控工具
+ */
+export class PerformanceMonitor {
+  constructor() {
+    this.metrics = {
+      fps: 0,
+      frameTime: 0,
+      memoryUsage: 0,
+    };
+    this.frameCount = 0;
+    this.lastTime = performance.now();
+  }
+
+  start() {
+    this.lastTime = performance.now();
+    this.frameCount = 0;
+  }
+
+  update() {
+    this.frameCount++;
+    const currentTime = performance.now();
+
+    if (currentTime - this.lastTime >= 1000) {
+      this.metrics.fps = this.frameCount;
+      this.metrics.frameTime = 1000 / this.frameCount;
+      this.metrics.memoryUsage = performance.memory
+        ? performance.memory.usedJSHeapSize / 1024 / 1024
+        : 0;
+
+      console.log(
+        `Performance: FPS=${
+          this.metrics.fps
+        }, FrameTime=${this.metrics.frameTime.toFixed(
+          2
+        )}ms, Memory=${this.metrics.memoryUsage.toFixed(2)}MB`
+      );
+
+      this.frameCount = 0;
+      this.lastTime = currentTime;
+    }
+  }
+
+  getMetrics() {
+    return this.metrics;
+  }
+}
+
+/**
+ * 防抖函数，用于优化频繁调用的函数
+ */
+export function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+/**
+ * 节流函数，用于限制函数调用频率
+ */
+export function throttle(func, limit) {
+  let inThrottle;
+  return function () {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
