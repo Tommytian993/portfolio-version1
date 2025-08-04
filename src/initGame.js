@@ -76,6 +76,7 @@ export default async function initGame() {
     k.loadSprite("kanbas-mern", "./projects/kanbas-mern.png"),
     k.loadSprite("minix-godot", "./projects/minix-godot.png"),
     k.loadSprite("agritrack-angular", "./projects/agritrack-angular.png"),
+    k.loadSprite("horizon-wallet", "./projects/horizon-wallet.png"),
     k.loadShaderURL("tiledPattern", null, "./shaders/tiledPattern.frag"),
   ]);
 
