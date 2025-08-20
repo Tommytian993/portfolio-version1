@@ -1,6 +1,6 @@
 [
   {
-    "pos": { "x": 150, "y": -400 },
+    "pos": { "x": 200, "y": -400 },
     "cardHeight": 320,
     "roleData": {
       "title": "Summer STEM Instructor",
@@ -13,7 +13,7 @@
     }
   },
   {
-    "pos": { "x": 150, "y": -100 },
+    "pos": { "x": 200, "y": -100 },
     "cardHeight": 280,
     "roleData": {
       "title": "Teaching Assistant - CS3520 Programming in C++",
@@ -26,7 +26,7 @@
     }
   },
   {
-    "pos": { "x": 150, "y": 200 },
+    "pos": { "x": 200, "y": 200 },
     "cardHeight": 320,
     "roleData": {
       "title": "Web Developer Co-op",
@@ -39,7 +39,7 @@
     }
   },
   {
-    "pos": { "x": 150, "y": 500 },
+    "pos": { "x": 200, "y": 500 },
     "cardHeight": 280,
     "roleData": {
       "title": "Software Developer Internship",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "pos": { "x": 150, "y": 800 },
+    "pos": { "x": 200, "y": 800 },
     "cardHeight": 280,
     "roleData": {
       "title": "STEM Literacy Volunteer",
