@@ -1,40 +1,66 @@
 [
   {
-    "pos": { "x": 150, "y": -200 },
-    "cardHeight": 280,
+    "pos": { "x": 150, "y": -400 },
+    "cardHeight": 320,
     "roleData": {
-      "title": "Teaching Assistant - CS3520 Programming in C++",
-      "description": "- Assisted in teaching core C++ concepts, including memory management, object-oriented programming, and debugging.\n - Held weekly office hours and supported over 80 students through Piazza, email, and live sessions.",
+      "title": "Summer STEM Instructor",
+      "description": "- Taught beginner-level courses, including Python 101, Game Design 101 with Godot, and AI & Machine Learning with ChatGPT, to elementary and middle school students.\n- Designed engaging lesson plans, coding exercises, AI demos and interactive activities, helping students build simple games, applications and AI-assisted writing projects, and developing creativity and programming skills.",
       "company": {
-        "name": "[Northeastern University]",
-        "startDate": "2025",
+        "name": "Lavner Education",
+        "startDate": "Jul 2025",
         "endDate": "Present"
       }
     }
   },
   {
-    "pos": { "x": 150, "y": 100 },
+    "pos": { "x": 150, "y": -100 },
+    "cardHeight": 280,
+    "roleData": {
+      "title": "Teaching Assistant - CS3520 Programming in C++",
+      "description": "- Assisted in teaching core C++ concepts, including memory management, object-oriented programming, and debugging.\n- Held weekly office hours and supported over 80 students through Piazza, email, and live sessions.",
+      "company": {
+        "name": "Khoury College of Computer Science",
+        "startDate": "May 2025",
+        "endDate": "Jul 2025"
+      }
+    }
+  },
+  {
+    "pos": { "x": 150, "y": 200 },
+    "cardHeight": 320,
+    "roleData": {
+      "title": "Web Developer Co-op",
+      "description": "- Contributed to the development and maintenance of CarpoolNU, Northeastern University's ride-sharing web application, built with Next.js, Tailwind CSS, Prisma and MySQL.\n- Conducted vulnerability scans and refactored code to improve authentication and data protection.\n- Reviewed and optimized the carpool matching algorithm, for more accurate and efficient user matches.\n- Built an administration portal for account management, permissions, and carpool cycle operations.",
+      "company": {
+        "name": "Education Innovation's Operations Department at Northeastern",
+        "startDate": "Jan 2025",
+        "endDate": "May 2025"
+      }
+    }
+  },
+  {
+    "pos": { "x": 150, "y": 500 },
     "cardHeight": 280,
     "roleData": {
       "title": "Software Developer Internship",
-      "description": "- Created AgriTrack, a full-stack web application that aims to help farmers track to farm operations, crop yields, harvest data and etc.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.",
+      "description": "- Developed a full-stack agricultural management system called Agritrack, with Angular, Django and PostgreSQL.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.",
       "company": {
-        "name": "CoolCrops",
+        "name": "Cool Crops",
         "startDate": "Feb 2024",
         "endDate": "May 2024"
       }
     }
   },
   {
-    "pos": { "x": 150, "y": 400 },
+    "pos": { "x": 150, "y": 800 },
     "cardHeight": 280,
     "roleData": {
       "title": "STEM Literacy Volunteer",
-      "description": "- Helped middle school students in preparation for the Boston Public Schools Science Fair.\n- Mentored students with writing technical reports and essays.\n- Supported students research in STEM areas including Environmental Science and Game Design.",
+      "description": "- Supported middle school students in preparation for the Boston Public Schools Science fair, researching in areas such as Data Science and Environmental Science.\n- Mentored students in writing technical reports and essays.",
       "company": {
         "name": "826 Boston",
-        "startDate": "Jan 2024",
-        "endDate": "Apr 2024"
+        "startDate": "Sep 2023",
+        "endDate": "Jan 2024"
       }
     }
   }
