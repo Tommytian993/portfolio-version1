@@ -72,6 +72,7 @@ export default async function initGame() {
     k.loadSprite("godot-logo", "./logos/godot-logo.png"),
     k.loadSprite("python2-logo", "./logos/python2-logo.png"),
     k.loadSprite("email-logo", "./logos/email-logo.png"),
+    k.loadSprite("tohotopia", "./projects/tohotopia.png"),
     k.loadSprite("flameguard-cpp", "./projects/flameguard-cpp.png"),
     k.loadSprite("kanbas-mern", "./projects/kanbas-mern.png"),
     k.loadSprite("minix-godot", "./projects/minix-godot.png"),
