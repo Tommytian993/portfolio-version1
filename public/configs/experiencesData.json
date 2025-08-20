@@ -27,7 +27,7 @@
   },
   {
     "pos": { "x": 200, "y": 300 },
-    "cardHeight": 500,
+    "cardHeight": 550,
     "roleData": {
       "title": "Web Developer Co-op",
       "description": "- Contributed to the development and maintenance of CarpoolNU, Northeastern University's ride-sharing web application, built with Next.js, Tailwind CSS, Prisma and MySQL.\n- Conducted vulnerability scans and refactored code to improve authentication and data protection.\n- Reviewed and optimized the carpool matching algorithm, for more accurate and efficient user matches.\n- Built an administration portal for account management, permissions, and carpool cycle operations.",
@@ -39,8 +39,8 @@
     }
   },
   {
-    "pos": { "x": 200, "y": 700 },
-    "cardHeight": 450,
+    "pos": { "x": 200, "y": 750 },
+    "cardHeight": 500,
     "roleData": {
       "title": "Software Developer Internship",
       "description": "- Developed a full-stack agricultural management system called Agritrack, with Angular, Django and PostgreSQL.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "pos": { "x": 200, "y": 950 },
+    "pos": { "x": 200, "y": 1000 },
     "cardHeight": 300,
     "roleData": {
       "title": "STEM Literacy Volunteer",
