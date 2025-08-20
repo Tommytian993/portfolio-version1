@@ -39,8 +39,8 @@
     }
   },
   {
-    "pos": { "x": 200, "y": 800 },
-    "cardHeight": 500,
+    "pos": { "x": 200, "y": 770 },
+    "cardHeight": 550,
     "roleData": {
       "title": "Software Developer Internship",
       "description": "- Developed a full-stack agricultural management system called Agritrack, with Angular, Django and PostgreSQL.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.",
