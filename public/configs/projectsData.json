@@ -1,6 +1,6 @@
 [
   {
-    "pos": { "x": 0, "y": -200 },
+    "pos": { "x": 0, "y": 350 },
     "thumbnail": "tohotopia",
     "data": {
       "title": "Tohotopia | Unity",
@@ -19,7 +19,7 @@
     }
   },
   {
-    "pos": { "x": 0, "y": 350 },
+    "pos": { "x": 0, "y": 840 },
     "thumbnail": "flameguard-cpp",
     "data": {
       "title": "Flameguard 2D Tower Defense | C++, SDL2, CMake",
@@ -38,7 +38,7 @@
     }
   },
   {
-    "pos": { "x": 0, "y": 840 },
+    "pos": { "x": 0, "y": 1320 },
     "thumbnail": "minix-godot",
     "data": {
       "title": "MiniX - A Lightweight 4X Strategy Game Prototype | C#, Godot ",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "pos": { "x": 0, "y": 1320 },
+    "pos": { "x": 0, "y": 1800 },
     "thumbnail": "agritrack-angular",
     "data": {
       "title": "AgriTrack - Internship Project | Angular 12, Typescript, Django, PostgreSQL",
@@ -66,7 +66,7 @@
     }
   },
   {
-    "pos": { "x": 0, "y": 1870 },
+    "pos": { "x": 0, "y": 2280 },
     "thumbnail": "kanbas-mern",
     "data": {
       "title": "Pixel Bastion | Godot, GDScript",
@@ -80,7 +80,7 @@
     }
   },
   {
-    "pos": { "x": 0, "y": 2350 },
+    "pos": { "x": 0, "y": 2760 },
     "thumbnail": "horizon-wallet",
     "data": {
       "title": "Horizon Wallet | Next.js, Appwrite, Plaid, TailwindCSS",
