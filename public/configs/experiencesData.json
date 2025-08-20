@@ -39,7 +39,7 @@
     }
   },
   {
-    "pos": { "x": 200, "y": 750 },
+    "pos": { "x": 200, "y": 800 },
     "cardHeight": 500,
     "roleData": {
       "title": "Software Developer Internship",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "pos": { "x": 200, "y": 1100 },
+    "pos": { "x": 200, "y": 1150 },
     "cardHeight": 300,
     "roleData": {
       "title": "STEM Literacy Volunteer",
