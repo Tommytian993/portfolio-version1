@@ -55,40 +55,12 @@
     "pos": { "x": 0, "y": 1800 },
     "thumbnail": "agritrack-angular",
     "data": {
-      "title": "AgriTrack - Internship Project | Angular 12, Typescript, Django, PostgreSQL",
+      "title": "AgriTrack | Angular 12, Typescript, Django, PostgreSQL",
       "links": [
         {
           "id": 0,
           "name": "Source Code",
           "link": "https://github.com/Tommytian993/AgriTrack-intern-project"
-        }
-      ]
-    }
-  },
-  {
-    "pos": { "x": 0, "y": 2300 },
-    "thumbnail": "kanbas-mern",
-    "data": {
-      "title": "Pixel Bastion | Godot, GDScript",
-      "links": [
-        {
-          "id": 0,
-          "name": "Source Code",
-          "link": "https://github.com/Tommytian993/godot-castle-turn-strategy"
-        }
-      ]
-    }
-  },
-  {
-    "pos": { "x": 0, "y": 2780 },
-    "thumbnail": "horizon-wallet",
-    "data": {
-      "title": "Horizon Wallet | Next.js, Appwrite, Plaid, TailwindCSS",
-      "links": [
-        {
-          "id": 0,
-          "name": "Source Code",
-          "link": "https://github.com/Tommytian993/stablecoin-bank"
         }
       ]
     }
