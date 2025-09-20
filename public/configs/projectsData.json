@@ -53,6 +53,20 @@
   },
   {
     "pos": { "x": 0, "y": 1800 },
+    "thumbnail": "kanbas-mern",
+    "data": {
+      "title": "Kanbas | React, Node.js, MongoDB",
+      "links": [
+        {
+          "id": 0,
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/kanbas-lms"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 2280 },
     "thumbnail": "agritrack-angular",
     "data": {
       "title": "AgriTrack | Angular 12, Typescript, Django, PostgreSQL",
