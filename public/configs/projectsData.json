@@ -23,16 +23,45 @@
     "thumbnail": "flameguard-cpp",
     "data": {
       "title": "Flameguard 2D Tower Defense | C++, SDL2, CMake",
+      "embedVideo": "https://drive.google.com/file/d/1njiuXL50DGkpbNA0HNU86M3xymPJ3Kas/preview",
       "links": [
         {
           "id": 0,
           "name": "Live Demo",
-          "link": "https://www.zhihu.com/zvideo/1915432177044271763"
+          "link": "https://drive.google.com/file/d/1njiuXL50DGkpbNA0HNU86M3xymPJ3Kas/view"
         },
         {
           "id": 1,
           "name": "Source Code",
           "link": "https://github.com/Tommytian993/flameguard-tower-defense"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 1320 },
+    "thumbnail": "minix-godot",
+    "data": {
+      "title": "MiniX - A Lightweight 4X Strategy Game Prototype | C#, Godot ",
+      "links": [
+        {
+          "id": 0,
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/MiniX"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 1800 },
+    "thumbnail": "kanbas-mern",
+    "data": {
+      "title": "Kanbas | React, Node.js, MongoDB",
+      "links": [
+        {
+          "id": 0,
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/kanbas-lms"
         }
       ]
     }
