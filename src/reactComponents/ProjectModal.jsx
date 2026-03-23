@@ -4,6 +4,7 @@ import { isProjectModalVisibleAtom, chosenProjectDataAtom } from "../store";
 export default function ProjectModal() {
   const projectData = useAtomValue(chosenProjectDataAtom);
   const [isVisible, setIsVisible] = useAtom(isProjectModalVisibleAtom);
+  const links = Array.isArray(projectData.links) ? projectData.links : [];
 
   const isVideoDirect = projectData.embedVideo?.match(/\.(mp4|webm|ogg)(\?|$)/i);
   const hasEmbed = !!projectData.embedVideo;
@@ -35,7 +36,7 @@ export default function ProjectModal() {
             </div>
           )}
           <div className="modal-btn-container">
-            {projectData.links.map((linkData) => (
+            {links.map((linkData) => (
               <button
                 key={linkData.id}
                 className={"modal-btn"}
