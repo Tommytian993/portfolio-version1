@@ -1,13 +1,16 @@
 import { DIAGONAL_FACTOR } from "../constants";
+import { PALETTE } from "../constants";
 import {
   isEmailModalVisibleAtom,
   isProjectModalVisibleAtom,
   isSocialModalVisibleAtom,
+  pointerOverExperienceToggleAtom,
+  pointerOverProjectToggleAtom,
   store,
 } from "../store";
 
-export default function makePlayer(k, posVec2, speed) {
-  const player = k.add([
+function makePlayerWithSprite(k, posVec2) {
+  return k.add([
     k.sprite("player", { anim: "walk-down" }),
     k.scale(8),
     k.anchor("center"),
@@ -18,14 +21,48 @@ export default function makePlayer(k, posVec2, speed) {
     {
       direction: k.vec2(0, 0),
       directionName: "walk-down",
+      useSprite: true,
     },
   ]);
+}
+
+function makePlayerFallback(k, posVec2) {
+  return k.add([
+    k.rect(24, 48),
+    k.anchor("center"),
+    k.color(k.Color.fromHex(PALETTE.color2)),
+    k.area({ shape: new k.Rect(k.vec2(0), 24, 48) }),
+    k.body(),
+    k.pos(posVec2),
+    "player",
+    {
+      direction: k.vec2(0, 0),
+      directionName: "walk-down",
+      useSprite: false,
+    },
+  ]);
+}
+
+export default function makePlayer(k, posVec2, speed) {
+  let player;
+  try {
+    player = makePlayerWithSprite(k, posVec2);
+  } catch (e) {
+    console.warn("Player sprite failed, using fallback rect:", e);
+    player = makePlayerFallback(k, posVec2);
+  }
+  if (!player) player = makePlayerFallback(k, posVec2);
 
   let isMouseDown = false;
   const game = document.getElementById("game");
+  if (!game) return player;
 
-  // 优化事件监听器
   const handleMouseDown = () => {
+    if (
+      store.get(pointerOverProjectToggleAtom) ||
+      store.get(pointerOverExperienceToggleAtom)
+    )
+      return;
     isMouseDown = true;
   };
   const handleMouseUp = () => {
@@ -73,6 +110,14 @@ export default function makePlayer(k, posVec2, speed) {
       return;
     }
 
+    // 悬停在 Projects / Experience 分类按钮上时不移动（与点击区域一致）
+    if (
+      store.get(pointerOverProjectToggleAtom) ||
+      store.get(pointerOverExperienceToggleAtom)
+    ) {
+      return;
+    }
+
     player.direction = k.vec2(0, 0);
     const worldMousePos = k.toWorld(k.mousePos());
 
@@ -80,41 +125,27 @@ export default function makePlayer(k, posVec2, speed) {
       player.direction = worldMousePos.sub(player.pos).unit();
     }
 
-    // 优化动画状态检查
-    const currentAnim = player.getCurAnim().name;
-    const isIdle = currentAnim.includes("idle");
-
-    if (player.direction.eq(k.vec2(0, 0)) && !isIdle) {
-      player.play(`${player.directionName}-idle`);
-      return;
-    }
-
-    // 优化方向判断逻辑
     const { x, y } = player.direction;
-    let newDirectionName = player.directionName;
 
-    if (x > 0 && y > -0.5 && y < 0.5) {
-      newDirectionName = "walk-right";
-    } else if (x < 0 && y > -0.5 && y < 0.5) {
-      newDirectionName = "walk-left";
-    } else if (x < 0 && y < -0.8) {
-      newDirectionName = "walk-up";
-    } else if (x < 0 && y > 0.8) {
-      newDirectionName = "walk-down";
-    } else if (x < 0 && y > -0.8 && y < -0.5) {
-      newDirectionName = "walk-left-up";
-    } else if (x < 0 && y > 0.5 && y < 0.8) {
-      newDirectionName = "walk-left-down";
-    } else if (x > 0 && y < -0.5 && y > -0.8) {
-      newDirectionName = "walk-right-up";
-    } else if (x > 0 && y > 0.5 && y < 0.8) {
-      newDirectionName = "walk-right-down";
-    }
-
-    if (newDirectionName !== player.directionName) {
-      player.directionName = newDirectionName;
-      if (currentAnim !== newDirectionName) {
-        player.play(newDirectionName);
+    if (player.useSprite) {
+      const currentAnim = player.getCurAnim().name;
+      const isIdle = currentAnim.includes("idle");
+      if (player.direction.eq(k.vec2(0, 0)) && !isIdle) {
+        player.play(`${player.directionName}-idle`);
+        return;
+      }
+      let newDirectionName = player.directionName;
+      if (x > 0 && y > -0.5 && y < 0.5) newDirectionName = "walk-right";
+      else if (x < 0 && y > -0.5 && y < 0.5) newDirectionName = "walk-left";
+      else if (x < 0 && y < -0.8) newDirectionName = "walk-up";
+      else if (x < 0 && y > 0.8) newDirectionName = "walk-down";
+      else if (x < 0 && y > -0.8 && y < -0.5) newDirectionName = "walk-left-up";
+      else if (x < 0 && y > 0.5 && y < 0.8) newDirectionName = "walk-left-down";
+      else if (x > 0 && y < -0.5 && y > -0.8) newDirectionName = "walk-right-up";
+      else if (x > 0 && y > 0.5 && y < 0.8) newDirectionName = "walk-right-down";
+      if (newDirectionName !== player.directionName) {
+        player.directionName = newDirectionName;
+        if (currentAnim !== newDirectionName) player.play(newDirectionName);
       }
     }
 

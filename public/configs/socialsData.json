@@ -8,11 +8,11 @@
   },
   {
     "pos": { "x": 675, "y": 250 },
-    "name": "Zhihu",
-    "description": "This is my Zhihu, I use it occasionally to book mark programming related posts.",
-    "link": "https://www.zhihu.com/people/gerrytianw",
+    "name": "LinkedIn",
+    "description": "Tianye's LinkedIn Profile",
+    "link": "https://www.linkedin.com/in/gerry-t-w/",
     "logoData": {
-      "name": "zhihu-logo",
+      "name": "linkedin-logo",
       "width": 128,
       "height": 128
     }
@@ -20,7 +20,7 @@
   {
     "pos": { "x": 975, "y": 250 },
     "name": "Email",
-    "address": "tianyewang52@gmail.com",
+    "address": "wang.tianye2@northeastern.edu",
     "logoData": {
       "name": "email-logo",
       "width": 128,

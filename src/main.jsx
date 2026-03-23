@@ -13,4 +13,6 @@ root.render(
      </StrictMode>
 )
 
-initGame()
+initGame().catch((err) => {
+  console.error("initGame failed:", err);
+});

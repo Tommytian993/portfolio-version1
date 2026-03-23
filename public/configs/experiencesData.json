@@ -1,20 +1,54 @@
 [
   {
-    "pos": { "x": 200, "y": -400 },
-    "cardHeight": 400,
+    "category": "Engineering",
     "roleData": {
-      "title": "Summer STEM Instructor",
-      "description": "- Taught beginner-level courses, including Python 101, Game Design 101 with Godot, and AI & Machine Learning with ChatGPT, to elementary and middle school students.\n- Designed engaging lesson plans, coding exercises, AI demos and interactive activities, helping students build simple games, applications and AI-assisted writing projects, and developing creativity and programming skills.",
+      "title": "AI in Education Research Intern",
+      "description": "- Built Lumina, a real-time classroom analytics platform using face/pose vision for attendance, attention, and cheating detection; powered by Ant Design Vue, Spring Boot, and TensorRT-accelerated C++/Drogon inference servers.\n- Implemented vision pipelines for facial recognition, emotion analysis, and suspicious behavior detection (object passing), with FFmpeg processing, MySQL/Redis storage, MinIO snapshots, and live monitoring.",
       "company": {
-        "name": "Lavner Education",
-        "startDate": "Jul 2025",
-        "endDate": "Present"
+        "name": "Lead By Learning",
+        "startDate": "Oct 2025",
+        "endDate": "Jan 2026"
       }
     }
   },
   {
-    "pos": { "x": 200, "y": 0 },
-    "cardHeight": 400,
+    "category": "Engineering",
+    "roleData": {
+      "title": "Part-time Web Developer",
+      "description": "- Supported maintenance of CarpoolNU, NEU’s ride-sharing app, with vulnerability checks and authentication updates.\n- Reviewed and optimized the carpool matching algorithm for more accurate and efficient user matches.\n- Built an administration portal for account management, permissions, and carpool cycle operations.",
+      "company": {
+        "name": "Education Innovation's Operations at NEU",
+        "startDate": "Jan 2025",
+        "endDate": "Apr 2025"
+      }
+    }
+  },
+  {
+    "category": "Engineering",
+    "roleData": {
+      "title": "Agricultural IOT Student Intern",
+      "description": "- Built Greenward, an agriculture platform that unified IoT devices, farm operations, and traceability into a web system.\n- Developed backend using Spring Boot, MyBatis, MySQL, Redis, and Netty to enable integration of heterogeneous devices via MQTT, TCP, Modbus, RS485, and GB28181 video streaming, and integrated a Neo4j knowledge graph to model crop-land-climate-equipment relationships, enabling graph-based search and  data linkage.",
+      "company": {
+        "name": "Fudan Development Institute",
+        "startDate": "May 2024",
+        "endDate": "Sep 2024"
+      }
+    }
+  },
+  {
+    "category": "Education",
+    "roleData": {
+      "title": "AI in Education Research Intern",
+      "description": "- Designed community-of-practice workshops for Bay Area teachers on efficient and safe LLM use.\n- Analyzed LLM response bias and classroom ethics, benchmarked prompts across models and presented mitigation strategies for instruction.",
+      "company": {
+        "name": "Lead By Learning",
+        "startDate": "Aug 2025",
+        "endDate": "Jan 2026"
+      }
+    }
+  },
+  {
+    "category": "Education",
     "roleData": {
       "title": "Teaching Assistant - CS3520 Programming in C++",
       "description": "- Assisted in teaching core C++ concepts, including memory management, object-oriented programming, and debugging.\n- Held weekly office hours and supported over 80 students through Piazza, email, and live sessions.",
@@ -26,41 +60,14 @@
     }
   },
   {
-    "pos": { "x": 200, "y": 300 },
-    "cardHeight": 550,
-    "roleData": {
-      "title": "Web Developer Co-op",
-      "description": "- Contributed to the development and maintenance of CarpoolNU, Northeastern University's ride-sharing web application, built with Next.js, Tailwind CSS, Prisma and MySQL.\n- Conducted vulnerability scans and refactored code to improve authentication and data protection.\n- Reviewed and optimized the carpool matching algorithm, for more accurate and efficient user matches.\n- Built an administration portal for account management, permissions, and carpool cycle operations.",
-      "company": {
-        "name": "Education Innovation's Operations Department at Northeastern",
-        "startDate": "Jan 2025",
-        "endDate": "May 2025"
-      }
-    }
-  },
-  {
-    "pos": { "x": 200, "y": 770 },
-    "cardHeight": 550,
-    "roleData": {
-      "title": "Software Developer Internship",
-      "description": "- Developed a full-stack agricultural management system called Agritrack, with Angular, Django and PostgreSQL.\n- Collaborated with other interns to design and distribute questionnaire, collecting valuable feedback from farmers.\n- Contributed to design of internal tools, such as an autocomplete system prototype for searching stored crop records.",
-      "company": {
-        "name": "Cool Crops",
-        "startDate": "Feb 2024",
-        "endDate": "May 2024"
-      }
-    }
-  },
-  {
-    "pos": { "x": 200, "y": 1150 },
-    "cardHeight": 300,
+    "category": "Education",
     "roleData": {
       "title": "STEM Literacy Volunteer",
-      "description": "- Supported middle school students in preparation for the Boston Public Schools Science fair, researching in areas such as Data Science and Environmental Science.\n- Mentored students in writing technical reports and essays.",
+      "description": "- Helped middle school students in preparation for the Boston Public Schools Science Fair. \n- Supported students research in STEM areas such as Data Science and Environmental Science, and writing technical reports and essays.",
       "company": {
         "name": "826 Boston",
-        "startDate": "Sep 2023",
-        "endDate": "Jan 2024"
+        "startDate": "Mar 2024",
+        "endDate": "Jun 2024"
       }
     }
   }

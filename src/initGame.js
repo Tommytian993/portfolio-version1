@@ -2,14 +2,24 @@ import makeSection from "./components/Section";
 import { PALETTE } from "./constants";
 import makePlayer from "./entites/Player";
 import makeKaplayCtx from "./kaplayCtx";
-import { cameraZoomValueAtom, store } from "./store";
+import {
+  cameraZoomValueAtom,
+  experienceCategoryAtom,
+  pointerOverExperienceToggleAtom,
+  pointerOverProjectToggleAtom,
+  projectCategoryAtom,
+  skillCategoryAtom,
+  store,
+} from "./store";
 import makeIcon from "./components/Icon";
 import { opacityTrickleDown } from "./utils";
 import { makeAppear } from "./utils";
 import { PerformanceMonitor } from "./utils";
 import makeSocialIcon from "./components/SocialIcon";
 import makeEmailIcon from "./components/EmailIcon";
-import makeWorkExperienceCard from "./components/WorkExperience";
+import makeWorkExperienceCard, {
+  EXPERIENCE_CARD_HEIGHT,
+} from "./components/WorkExperience";
 import makeProjectCard from "./components/ProjectCard";
 
 export default async function initGame() {
@@ -61,7 +71,7 @@ export default async function initGame() {
     k.loadFont("ibm-regular", "./fonts/IBMPlexSans-Regular.ttf"),
     k.loadFont("ibm-bold", "./fonts/IBMPlexSans-Bold.ttf"),
     k.loadSprite("github-logo", "./logos/github-logo.png"),
-    k.loadSprite("zhihu-logo", "./logos/zhihu-logo.png"),
+    k.loadSprite("linkedin-logo", "./logos/linkedin-logo.png"),
     k.loadSprite("sdl2-logo", "./logos/sdl2-logo.png"),
     k.loadSprite("csharp-logo", "./logos/csharp-logo.png"),
     k.loadSprite("java-logo", "./logos/java-logo.png"),
@@ -182,74 +192,458 @@ export default async function initGame() {
       makeAppear(k, socialContainer);
     }
   );
-  makeSection(
-    k,
-    k.vec2(k.center().x - 400, k.center().y),
-    generalData.section2Name,
-    (parent) => {
-      /* make the container independent of the section
-       so that the skill icons appear on top of every section's children.
-       so that when the skill icons are pushed around by the player
-       they always remain on top */
-      const container = k.add([
-        k.opacity(0),
-        k.pos(parent.pos.x - 300, parent.pos.y),
-      ]);
-
-      for (const skillData of skillsData) {
-        makeSkillIcon(
-          k,
-          container,
-          k.vec2(skillData.pos.x, skillData.pos.y),
-          skillData.logoData,
-          skillData.name
-        );
-      }
-
-      makeAppear(k, container);
+  const section2Pos = k.vec2(k.center().x - 400, k.center().y);
+  const skillsContainer = k.add([
+    k.opacity(0),
+    k.pos(section2Pos.x - 300, section2Pos.y),
+  ]);
+  const skillsEmoji = k.add([
+    k.text("🛠️", { font: "ibm-bold", size: 72 }),
+    k.anchor("center"),
+    k.pos(section2Pos.x, section2Pos.y + 10),
+    k.color(k.Color.fromHex(PALETTE.color2)),
+    k.opacity(0),
+  ]);
+  let skillsOptionsRoot;
+  const cellSize = 52;
+  const gridGap = 8;
+  const gridPad = 12;
+  skillsOptionsRoot = k.add([
+    k.pos(section2Pos.x, section2Pos.y + 190),
+    k.anchor("center"),
+    k.opacity(0),
+  ]);
+  const gridW = cellSize * 2 + gridGap + gridPad * 2;
+  skillsOptionsRoot.add([
+    k.rect(gridW, gridW, { radius: 8, fill: false }),
+    k.anchor("center"),
+    k.pos(0, 0),
+    k.outline(3, k.Color.fromHex(PALETTE.color1)),
+    k.opacity(0),
+  ]);
+  for (let i = 0; i < 4; i++) {
+    const row = Math.floor(i / 2);
+    const col = i % 2;
+    const px = (col - 0.5) * (cellSize + gridGap);
+    const py = (row - 0.5) * (cellSize + gridGap);
+    const cell = skillsOptionsRoot.add([
+      k.rect(cellSize, cellSize, { radius: 6 }),
+      k.anchor("center"),
+      k.pos(px, py),
+      k.area(),
+      k.color(k.Color.fromHex(PALETTE.color2)),
+      k.opacity(0),
+    ]);
+    cell.add([
+      k.text(String(i + 1), { font: "ibm-bold", size: 22 }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.color(k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    cell.onClick(() => store.set(skillCategoryAtom, String(i)));
+  }
+  makeSection(k, section2Pos, generalData.section2Name, () => {
+    for (const skillData of skillsData) {
+      makeSkillIcon(
+        k,
+        skillsContainer,
+        k.vec2(skillData.pos.x, skillData.pos.y),
+        skillData.logoData,
+        skillData.name
+      );
     }
-  );
-  makeSection(
-    k,
-    k.vec2(k.center().x + 400, k.center().y),
-    generalData.section3Name,
-    (parent) => {
-      const container = parent.add([k.opacity(0), k.pos(0)]);
-      for (const experienceData of experiencesData) {
-        makeWorkExperienceCard(
-          k,
-          container,
-          k.vec2(experienceData.pos.x, experienceData.pos.y),
-          experienceData.cardHeight,
-          experienceData.roleData
+    makeAppear(k, skillsContainer);
+    makeAppear(k, skillsEmoji);
+    makeAppear(k, skillsOptionsRoot).then(() => {
+      const setOpacityRecursive = (node, val) => {
+        if (node.opacity !== undefined) node.opacity = val;
+        if (node.children)
+          for (const c of node.children) setOpacityRecursive(c, val);
+      };
+      setOpacityRecursive(skillsOptionsRoot, 1);
+    });
+  });
+
+  const section3Pos = k.vec2(k.center().x + 400, k.center().y);
+  const experienceContainer = k.add([
+    k.opacity(0),
+    k.pos(section3Pos.x, section3Pos.y),
+  ]);
+
+  const expToggleX = 0;
+  const expBtnW = 135;
+  const expBtnH = 48;
+  const expGap = 14;
+  const expFramePad = 12;
+  const expToggleCenterX = section3Pos.x + expToggleX;
+  const expToggleCenterY = section3Pos.y + 204;
+
+  let experienceOptionsRoot;
+  try {
+    experienceOptionsRoot = k.add([
+      k.pos(expToggleCenterX, expToggleCenterY),
+      k.anchor("center"),
+      k.opacity(0),
+    ]);
+    const expFrameW = expBtnW + expFramePad * 2;
+    const expFrameH = expBtnH * 2 + expGap + expFramePad * 2;
+    experienceOptionsRoot.add([
+      k.rect(expFrameW, expFrameH, { radius: 10, fill: false }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.outline(4, k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    const engineeringBtn = experienceOptionsRoot.add([
+      k.rect(expBtnW, expBtnH, { radius: 8 }),
+      k.anchor("center"),
+      k.pos(0, -(expBtnH + expGap) / 2),
+      k.area(),
+      k.color(k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    engineeringBtn.add([
+      k.text("Engineering", {
+        font: "ibm-bold",
+        size: 21,
+        width: expBtnW - 12,
+      }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.color(k.Color.fromHex(PALETTE.color2)),
+      k.opacity(0),
+    ]);
+    const eduBtn = experienceOptionsRoot.add([
+      k.rect(expBtnW, expBtnH, { radius: 8 }),
+      k.anchor("center"),
+      k.pos(0, (expBtnH + expGap) / 2),
+      k.area(),
+      k.color(k.Color.fromHex(PALETTE.color2)),
+      k.opacity(0),
+    ]);
+    eduBtn.add([
+      k.text("Educational", {
+        font: "ibm-bold",
+        size: 21,
+        width: expBtnW - 11,
+      }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.color(k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    const engineeringBtnText =
+      engineeringBtn.children && engineeringBtn.children[0];
+    const eduBtnText = eduBtn.children && eduBtn.children[0];
+    const updateExperienceToggleStyle = () => {
+      const cat = store.get(experienceCategoryAtom);
+      const engineeringActive = cat === "Engineering";
+      engineeringBtn.color = k.Color.fromHex(
+        engineeringActive ? PALETTE.color1 : PALETTE.color2
+      );
+      if (engineeringBtnText && "color" in engineeringBtnText)
+        engineeringBtnText.color = k.Color.fromHex(
+          engineeringActive ? PALETTE.color2 : PALETTE.color1
         );
-      }
-
-      makeAppear(k, container);
-    }
-  );
-  makeSection(
-    k,
-    k.vec2(k.center().x, k.center().y + 400),
-    generalData.section4Name,
-    (parent) => {
-      const container = parent.add([k.opacity(0), k.pos(0, 0)]);
-
-      for (const project of projectsData) {
-        makeProjectCard(
-          k,
-          container,
-          k.vec2(project.pos.x, project.pos.y),
-          project.data,
-          project.thumbnail
+      const eduActive = cat === "Education";
+      eduBtn.color = k.Color.fromHex(
+        eduActive ? PALETTE.color1 : PALETTE.color2
+      );
+      if (eduBtnText && "color" in eduBtnText)
+        eduBtnText.color = k.Color.fromHex(
+          eduActive ? PALETTE.color2 : PALETTE.color1
         );
-      }
+    };
+    updateExperienceToggleStyle();
+    store.sub(experienceCategoryAtom, updateExperienceToggleStyle);
+    engineeringBtn.onClick(() =>
+      store.set(experienceCategoryAtom, "Engineering")
+    );
+    eduBtn.onClick(() => store.set(experienceCategoryAtom, "Education"));
 
-      makeAppear(k, container);
+    const expToggleHalfW = expFrameW / 2;
+    const expToggleHalfH = expFrameH / 2;
+    k.onUpdate(() => {
+      const worldMouse = k.toWorld(k.mousePos());
+      const over =
+        worldMouse.x >= expToggleCenterX - expToggleHalfW &&
+        worldMouse.x <= expToggleCenterX + expToggleHalfW &&
+        worldMouse.y >= expToggleCenterY - expToggleHalfH &&
+        worldMouse.y <= expToggleCenterY + expToggleHalfH;
+      store.set(pointerOverExperienceToggleAtom, over);
+    });
+  } catch (expToggleErr) {
+    console.warn(
+      "Experience toggle failed, continuing without it:",
+      expToggleErr
+    );
+    experienceOptionsRoot = k.add([
+      k.pos(section3Pos.x, section3Pos.y + 140),
+      k.anchor("center"),
+      k.opacity(0),
+    ]);
+  }
+
+  const EXPERIENCE_SLOT_GAP = 36;
+  const EXPERIENCE_CARDS_X = 200;
+  const EXPERIENCE_MAX_SLOTS = 4;
+
+  const populateExperienceCards = (makeVisible = false) => {
+    while (experienceContainer.children.length > 0) {
+      experienceContainer.children[0].destroy();
     }
-  );
+    const cat = store.get(experienceCategoryAtom);
+    const list = experiencesData.filter(
+      (e) => (e.category ?? "Engineering") === cat
+    );
+    const slice = list.slice(0, EXPERIENCE_MAX_SLOTS);
+    const stepY = EXPERIENCE_CARD_HEIGHT + EXPERIENCE_SLOT_GAP;
+    slice.forEach((entry, i) => {
+      makeWorkExperienceCard(
+        k,
+        experienceContainer,
+        k.vec2(EXPERIENCE_CARDS_X, i * stepY),
+        entry.roleData
+      );
+    });
+    if (makeVisible) {
+      const walk = (node, val) => {
+        if (node.opacity !== undefined) node.opacity = val;
+        if (node.children) for (const c of node.children) walk(c, val);
+      };
+      walk(experienceContainer, 1);
+    }
+  };
 
-  makePlayer(k, k.vec2(k.center()), 700);
+  // Section hitbox (dark box) must be added before the emoji so the emoji draws on top — same order as Projects.
+  makeSection(k, section3Pos, generalData.section3Name, () => {
+    experienceSectionOpened = true;
+    populateExperienceCards();
+    makeAppear(k, experienceContainer);
+    makeAppear(k, experienceEmoji);
+    makeAppear(k, experienceOptionsRoot).then(() => {
+      const setOpacityRecursive = (node, val) => {
+        if (node.opacity !== undefined) node.opacity = val;
+        if (node.children)
+          for (const c of node.children) setOpacityRecursive(c, val);
+      };
+      setOpacityRecursive(experienceOptionsRoot, 1);
+    });
+  });
+
+  const experienceEmoji = k.add([
+    k.text(store.get(experienceCategoryAtom) === "Engineering" ? "👨‍🔧" : "👨‍🏫", {
+      font: "ibm-bold",
+      size: 90,
+    }),
+    k.anchor("center"),
+    k.pos(section3Pos.x, section3Pos.y + 10),
+    k.color(k.Color.fromHex(PALETTE.color2)),
+    k.opacity(0),
+  ]);
+
+  let experienceSectionOpened = false;
+  store.sub(experienceCategoryAtom, () => {
+    const cat = store.get(experienceCategoryAtom);
+    experienceEmoji.text = cat === "Engineering" ? "👨‍🔧" : "👨‍🏫";
+    if (experienceSectionOpened) populateExperienceCards(true);
+  });
+
+  const projectsSectionPos = k.vec2(k.center().x, k.center().y + 400);
+  const gamesData = projectsData.filter((p) => p.category === "Games");
+  const majorData = projectsData.filter((p) => p.category === "Major");
+  const socialGoodData = projectsData.filter((p) => p.category === "Social");
+
+  const containerProjectCards = k.add([
+    k.opacity(0),
+    k.pos(projectsSectionPos.x, projectsSectionPos.y),
+  ]);
+
+  const setOpacityRecursive = (node, val) => {
+    if (node.opacity !== undefined) node.opacity = val;
+    if (node.children)
+      for (const c of node.children) setOpacityRecursive(c, val);
+  };
+  const populateProjectCards = (makeVisible = false) => {
+    while (containerProjectCards.children.length > 0) {
+      containerProjectCards.children[0].destroy();
+    }
+    const cat = store.get(projectCategoryAtom);
+    const data =
+      cat === "Games"
+        ? gamesData
+        : cat === "Major"
+        ? majorData
+        : socialGoodData;
+    for (const project of data) {
+      makeProjectCard(
+        k,
+        containerProjectCards,
+        k.vec2(project.pos.x, project.pos.y),
+        project.data,
+        project.thumbnail
+      );
+    }
+    if (makeVisible) setOpacityRecursive(containerProjectCards, 1);
+  };
+
+  let projectsSectionOpened = false;
+  store.sub(projectCategoryAtom, () => {
+    const cat = store.get(projectCategoryAtom);
+    projectsEmoji.text = cat === "Games" ? "🎮" : cat === "Major" ? "🧰" : "🤝";
+    if (projectsSectionOpened) populateProjectCards(true);
+  });
+
+  makeSection(k, projectsSectionPos, generalData.section4Name, () => {
+    projectsSectionOpened = true;
+    populateProjectCards();
+    makeAppear(k, containerProjectCards);
+    makeAppear(k, projectsEmoji);
+    if (toggleRoot) {
+      makeAppear(k, toggleRoot).then(() => {
+        const setOpacityRecursive = (node, val) => {
+          if (node.opacity !== undefined) node.opacity = val;
+          if (node.children)
+            for (const c of node.children) setOpacityRecursive(c, val);
+        };
+        setOpacityRecursive(toggleRoot, 1);
+      });
+    }
+  });
+
+  const projectsEmoji = k.add([
+    k.text(store.get(projectCategoryAtom) === "Games" ? "🎮" : "🧰", {
+      font: "ibm-bold",
+      size: 90,
+    }),
+    k.anchor("center"),
+    k.pos(projectsSectionPos.x, projectsSectionPos.y + 10),
+    k.color(k.Color.fromHex(PALETTE.color2)),
+    k.opacity(0),
+  ]);
+
+  let toggleRoot;
+  try {
+    const toggleX = 220;
+    const btnW = 96;
+    const btnH = 48;
+    const gap = 14;
+    const framePad = 12;
+    toggleRoot = k.add([
+      k.pos(projectsSectionPos.x + toggleX, projectsSectionPos.y),
+      k.anchor("center"),
+      k.opacity(0),
+    ]);
+    const frameW = btnW + framePad * 2;
+    const frameH = btnH * 3 + gap * 2 + framePad * 2;
+    toggleRoot.add([
+      k.rect(frameW, frameH, { radius: 10, fill: false }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.outline(4, k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    const gamesBtn = toggleRoot.add([
+      k.rect(btnW, btnH, { radius: 8 }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.area(),
+      k.color(k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    gamesBtn.add([
+      k.text("Games", { font: "ibm-bold", size: 24 }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.color(k.Color.fromHex(PALETTE.color2)),
+      k.opacity(0),
+    ]);
+    const majorBtn = toggleRoot.add([
+      k.rect(btnW, btnH, { radius: 8 }),
+      k.anchor("center"),
+      k.pos(0, -(btnH + gap)),
+      k.area(),
+      k.color(k.Color.fromHex(PALETTE.color2)),
+      k.opacity(0),
+    ]);
+    majorBtn.add([
+      k.text("Major", { font: "ibm-bold", size: 24 }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.color(k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    const socialBtn = toggleRoot.add([
+      k.rect(btnW, btnH, { radius: 8 }),
+      k.anchor("center"),
+      k.pos(0, btnH + gap),
+      k.area(),
+      k.color(k.Color.fromHex(PALETTE.color2)),
+      k.opacity(0),
+    ]);
+    socialBtn.add([
+      k.text("Social", { font: "ibm-bold", size: 24 }),
+      k.anchor("center"),
+      k.pos(0, 0),
+      k.color(k.Color.fromHex(PALETTE.color1)),
+      k.opacity(0),
+    ]);
+    const gamesBtnText = gamesBtn.children && gamesBtn.children[0];
+    const majorBtnText = majorBtn.children && majorBtn.children[0];
+    const socialBtnText = socialBtn.children && socialBtn.children[0];
+    const updateToggleStyle = () => {
+      const cat = store.get(projectCategoryAtom);
+      const gamesActive = cat === "Games";
+      gamesBtn.color = k.Color.fromHex(
+        gamesActive ? PALETTE.color1 : PALETTE.color2
+      );
+      if (gamesBtnText && "color" in gamesBtnText)
+        gamesBtnText.color = k.Color.fromHex(
+          gamesActive ? PALETTE.color2 : PALETTE.color1
+        );
+      const majorActive = cat === "Major";
+      majorBtn.color = k.Color.fromHex(
+        majorActive ? PALETTE.color1 : PALETTE.color2
+      );
+      if (majorBtnText && "color" in majorBtnText)
+        majorBtnText.color = k.Color.fromHex(
+          majorActive ? PALETTE.color2 : PALETTE.color1
+        );
+      const socialActive = cat === "Social";
+      socialBtn.color = k.Color.fromHex(
+        socialActive ? PALETTE.color1 : PALETTE.color2
+      );
+      if (socialBtnText && "color" in socialBtnText)
+        socialBtnText.color = k.Color.fromHex(
+          socialActive ? PALETTE.color2 : PALETTE.color1
+        );
+    };
+    updateToggleStyle();
+    store.sub(projectCategoryAtom, updateToggleStyle);
+    gamesBtn.onClick(() => store.set(projectCategoryAtom, "Games"));
+    majorBtn.onClick(() => store.set(projectCategoryAtom, "Major"));
+    socialBtn.onClick(() => store.set(projectCategoryAtom, "Social"));
+
+    const toggleHalfW = frameW / 2;
+    const toggleHalfH = frameH / 2;
+    const toggleCenterX = projectsSectionPos.x + toggleX;
+    const toggleCenterY = projectsSectionPos.y;
+    k.onUpdate(() => {
+      const worldMouse = k.toWorld(k.mousePos());
+      const over =
+        worldMouse.x >= toggleCenterX - toggleHalfW &&
+        worldMouse.x <= toggleCenterX + toggleHalfW &&
+        worldMouse.y >= toggleCenterY - toggleHalfH &&
+        worldMouse.y <= toggleCenterY + toggleHalfH;
+      store.set(pointerOverProjectToggleAtom, over);
+    });
+  } catch (toggleErr) {
+    console.warn("Projects toggle failed, continuing without it:", toggleErr);
+  }
+
+  const player = makePlayer(k, k.vec2(k.center().x, k.center().y), 700);
+  k.camPos(player.pos);
 }
 
 /**
