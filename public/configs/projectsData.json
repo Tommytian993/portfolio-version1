@@ -57,7 +57,7 @@
   },
   {
     "pos": { "x": 0, "y": 350 },
-    "thumbnail": "kanbas-mern",
+    "thumbnail": "lumina",
     "category": "Major",
     "data": {
       "title": "Carpool NU",
@@ -66,6 +66,57 @@
           "id": 0,
           "name": "Website",
           "link": "https://www.carpoolnu.com"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 840 },
+    "thumbnail": "carpoolnu",
+    "category": "Major",
+    "data": {
+      "title": "CarpoolNU | Next.js, Tailwind CSS, Prisma, MySQL",
+      "links": [
+        {
+          "id": 0,
+          "name": "Site",
+          "link": "https://www.carpoolnu.com/"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 1320 },
+    "thumbnail": "greenward",
+    "category": "Major",
+    "data": {
+      "title": "Greenward | Spring Boot, MyBatis, MySQL, Redis, Neo4j",
+      "links": [
+        {
+          "id": 0,
+          "name": "Source Code",
+          "link": "https://github.com/Tommytian993/MiniX"
+        }
+      ]
+    }
+  },
+  {
+    "pos": { "x": 0, "y": 350 },
+    "thumbnail": "ens",
+    "category": "Social",
+    "data": {
+      "title": "ENS Patient Support Initiative",
+      "description": "Contributed to ENS patient community in China and the US by translating books by representative Chris Martin, helping produce video and podcast content on Bilibili, and maintaining ENSTips.com, including work on an AI agent for support tips and resource access.",
+      "links": [
+        {
+          "id": 0,
+          "name": "Bilibili Patient Account",
+          "link": "https://www.bilibili.com/video/BV1594YzzE9S"
+        },
+        {
+          "id": 1,
+          "name": "ENS-Tips Website",
+          "link": "https://www.ens-tips.com"
         }
       ]
     }

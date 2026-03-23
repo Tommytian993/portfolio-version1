@@ -6,6 +6,7 @@ import {
   isSocialModalVisibleAtom,
   pointerOverExperienceToggleAtom,
   pointerOverProjectToggleAtom,
+  pointerOverSkillsOptionsAtom,
   store,
 } from "../store";
 
@@ -60,7 +61,8 @@ export default function makePlayer(k, posVec2, speed) {
   const handleMouseDown = () => {
     if (
       store.get(pointerOverProjectToggleAtom) ||
-      store.get(pointerOverExperienceToggleAtom)
+      store.get(pointerOverExperienceToggleAtom) ||
+      store.get(pointerOverSkillsOptionsAtom)
     )
       return;
     isMouseDown = true;
@@ -113,7 +115,8 @@ export default function makePlayer(k, posVec2, speed) {
     // 悬停在 Projects / Experience 分类按钮上时不移动（与点击区域一致）
     if (
       store.get(pointerOverProjectToggleAtom) ||
-      store.get(pointerOverExperienceToggleAtom)
+      store.get(pointerOverExperienceToggleAtom) ||
+      store.get(pointerOverSkillsOptionsAtom)
     ) {
       return;
     }

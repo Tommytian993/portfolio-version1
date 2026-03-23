@@ -13,6 +13,7 @@ export default function ProjectModal() {
       <div className="modal">
         <div className="modal-content">
           <h1>{projectData.title}</h1>
+          {projectData.description && <p>{projectData.description}</p>}
           {hasEmbed && (
             <div className="modal-video-wrap">
               {isVideoDirect ? (

@@ -6,7 +6,7 @@
       "description": "- Built Lumina, a real-time classroom analytics platform using face/pose vision for attendance, attention, and cheating detection; powered by Ant Design Vue, Spring Boot, and TensorRT-accelerated C++/Drogon inference servers.\n- Implemented vision pipelines for facial recognition, emotion analysis, and suspicious behavior detection (object passing), with FFmpeg processing, MySQL/Redis storage, MinIO snapshots, and live monitoring.",
       "company": {
         "name": "Lead By Learning",
-        "startDate": "Oct 2025",
+        "startDate": "Aug 2025",
         "endDate": "Jan 2026"
       }
     }

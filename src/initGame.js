@@ -7,6 +7,7 @@ import {
   experienceCategoryAtom,
   pointerOverExperienceToggleAtom,
   pointerOverProjectToggleAtom,
+  pointerOverSkillsOptionsAtom,
   projectCategoryAtom,
   skillCategoryAtom,
   store,
@@ -84,10 +85,11 @@ export default async function initGame() {
     k.loadSprite("email-logo", "./logos/email-logo.png"),
     k.loadSprite("tohotopia", "./projects/tohotopia.png"),
     k.loadSprite("flameguard-cpp", "./projects/flameguard-cpp.png"),
-    k.loadSprite("kanbas-mern", "./projects/kanbas-mern.png"),
+    k.loadSprite("greenward", "./projects/greenward.png"),
+    k.loadSprite("carpoolnu", "./projects/nucarpool.png"),
+    k.loadSprite("lumina", "./projects/lumina.png"),
     k.loadSprite("minix-godot", "./projects/minix-godot.png"),
-    k.loadSprite("agritrack-angular", "./projects/agritrack-angular.png"),
-    k.loadSprite("horizon-wallet", "./projects/horizon-wallet.png"),
+    k.loadSprite("ens", "./projects/ens.png"),
     k.loadShaderURL("tiledPattern", null, "./shaders/tiledPattern.frag"),
   ]);
 
@@ -205,44 +207,91 @@ export default async function initGame() {
     k.opacity(0),
   ]);
   let skillsOptionsRoot;
-  const cellSize = 52;
-  const gridGap = 8;
+  const skillTags = [
+    "Languages",
+    "Frontend",
+    "Backend",
+    "Storage",
+    "ML",
+    "Agents",
+  ];
+  const tagBtnW = 128;
+  const tagBtnH = 44;
+  const tagGap = 10;
   const gridPad = 12;
   skillsOptionsRoot = k.add([
     k.pos(section2Pos.x, section2Pos.y + 190),
     k.anchor("center"),
     k.opacity(0),
   ]);
-  const gridW = cellSize * 2 + gridGap + gridPad * 2;
+  const skillsOptionsCenterX = section2Pos.x;
+  const skillsOptionsCenterY = section2Pos.y + 190;
+  const gridW = tagBtnW * 3 + tagGap * 2 + gridPad * 2;
+  const gridH = tagBtnH * 2 + tagGap + gridPad * 2;
   skillsOptionsRoot.add([
-    k.rect(gridW, gridW, { radius: 8, fill: false }),
+    k.rect(gridW, gridH, { radius: 8, fill: false }),
     k.anchor("center"),
     k.pos(0, 0),
     k.outline(3, k.Color.fromHex(PALETTE.color1)),
     k.opacity(0),
   ]);
-  for (let i = 0; i < 4; i++) {
-    const row = Math.floor(i / 2);
-    const col = i % 2;
-    const px = (col - 0.5) * (cellSize + gridGap);
-    const py = (row - 0.5) * (cellSize + gridGap);
-    const cell = skillsOptionsRoot.add([
-      k.rect(cellSize, cellSize, { radius: 6 }),
+
+  const skillTagButtons = [];
+  for (let i = 0; i < skillTags.length; i++) {
+    const row = Math.floor(i / 3);
+    const col = i % 3;
+    const px = (col - 1) * (tagBtnW + tagGap);
+    const py = (row - 0.5) * (tagBtnH + tagGap);
+    const label = skillTags[i];
+    const btn = skillsOptionsRoot.add([
+      k.rect(tagBtnW, tagBtnH, { radius: 6 }),
       k.anchor("center"),
       k.pos(px, py),
       k.area(),
       k.color(k.Color.fromHex(PALETTE.color2)),
       k.opacity(0),
     ]);
-    cell.add([
-      k.text(String(i + 1), { font: "ibm-bold", size: 22 }),
+    const btnText = btn.add([
+      k.text(label, {
+        font: "ibm-bold",
+        size: 21,
+        width: tagBtnW - 8,
+        align: "center",
+      }),
       k.anchor("center"),
       k.pos(0, 0),
       k.color(k.Color.fromHex(PALETTE.color1)),
       k.opacity(0),
     ]);
-    cell.onClick(() => store.set(skillCategoryAtom, String(i)));
+    btn.onClick(() => store.set(skillCategoryAtom, label));
+    skillTagButtons.push({ label, btn, btnText });
   }
+
+  const updateSkillTagStyle = () => {
+    const selected = store.get(skillCategoryAtom);
+    for (const item of skillTagButtons) {
+      const active = item.label === selected;
+      item.btn.color = k.Color.fromHex(
+        active ? PALETTE.color1 : PALETTE.color2
+      );
+      item.btnText.color = k.Color.fromHex(
+        active ? PALETTE.color2 : PALETTE.color1
+      );
+    }
+  };
+  updateSkillTagStyle();
+  store.sub(skillCategoryAtom, updateSkillTagStyle);
+  const skillsHalfW = gridW / 2;
+  const skillsHalfH = gridH / 2;
+  k.onUpdate(() => {
+    const worldMouse = k.toWorld(k.mousePos());
+    const over =
+      worldMouse.x >= skillsOptionsCenterX - skillsHalfW &&
+      worldMouse.x <= skillsOptionsCenterX + skillsHalfW &&
+      worldMouse.y >= skillsOptionsCenterY - skillsHalfH &&
+      worldMouse.y <= skillsOptionsCenterY + skillsHalfH;
+    store.set(pointerOverSkillsOptionsAtom, over);
+  });
   makeSection(k, section2Pos, generalData.section2Name, () => {
     for (const skillData of skillsData) {
       makeSkillIcon(
