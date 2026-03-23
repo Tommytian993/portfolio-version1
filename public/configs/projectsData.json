@@ -60,14 +60,8 @@
     "thumbnail": "lumina",
     "category": "Major",
     "data": {
-      "title": "Carpool NU",
-      "links": [
-        {
-          "id": 0,
-          "name": "Website",
-          "link": "https://www.carpoolnu.com"
-        }
-      ]
+      "title": "Lumina | Ant Design Vue, Spring Boot, TensorRT",
+      "description": "Please Contact for Demo and Source Code"
     }
   },
   {
@@ -91,13 +85,7 @@
     "category": "Major",
     "data": {
       "title": "Greenward | Spring Boot, MyBatis, MySQL, Redis, Neo4j",
-      "links": [
-        {
-          "id": 0,
-          "name": "Source Code",
-          "link": "https://github.com/Tommytian993/MiniX"
-        }
-      ]
+      "description": "Please Contact for Demo and Source Code"
     }
   },
   {
